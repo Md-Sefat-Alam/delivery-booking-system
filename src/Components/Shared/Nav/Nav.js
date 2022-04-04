@@ -25,7 +25,10 @@ const Nav = () => {
       <div>
         {user.accessToken ? (
           <div className="flex flex-row-reverse">
-            <div className="w-10 h-10 bg-green-100 border-2 border-green-500 rounded-full m-1 overflow-hidden flex justify-center items-center select-none cursor-pointer">
+            <div
+              title={user.displayName ? user.displayName : user.email}
+              className="w-10 h-10 bg-green-100 border-2 border-green-500 rounded-full m-1 overflow-hidden flex justify-center items-center select-none cursor-pointer"
+            >
               {user.photoURL ? (
                 //   user.photoURL
                 <img className="" src={user.photoURL} alt={user.email[0]} />

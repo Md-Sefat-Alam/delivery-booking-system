@@ -1,7 +1,9 @@
 import {
+  createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
@@ -26,6 +28,24 @@ const useFirebase = () => {
         console.log(error.code);
       });
   };
+  const emailPasswordRegister = (email, password) => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        setUser(userCredential.user);
+      })
+      .catch((error) => {
+        setError(error.code);
+      });
+  };
+  const emailPasswordLogin = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        setUser(userCredential.user);
+      })
+      .catch((error) => {
+        setError(error.code);
+      });
+  };
   const logOut = () => {
     signOut(auth)
       .then(() => {})
@@ -42,12 +62,16 @@ const useFirebase = () => {
       }
     });
   }, []);
+  console.log(error);
+  console.log(user);
 
   return {
     user,
     error,
     googleLogin,
     logOut,
+    emailPasswordRegister,
+    emailPasswordLogin,
   };
 };
 export default useFirebase;
