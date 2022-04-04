@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import GoogleSignIn from "../GoogleSignIn/GoogleSignIn";
 import SectionHeader from "../Shared/SectionHeader/SectionHeader";
 
@@ -32,11 +33,13 @@ const Login = () => {
                   value="Login"
                   className="border px-3 py-1 cursor-pointer bg-orange-500 text-white rounded"
                 />
-                <input
-                  type="submit"
-                  value="Register Now?"
-                  className="border px-3 py-1 cursor-pointer bg-orange-500 rounded text-white"
-                />
+                <Link to={"/register"}>
+                  <input
+                    type="button"
+                    value="Register Now?"
+                    className="border px-3 py-1 cursor-pointer bg-orange-500 rounded text-white"
+                  />
+                </Link>
               </div>
               <div>
                 <GoogleSignIn></GoogleSignIn>
