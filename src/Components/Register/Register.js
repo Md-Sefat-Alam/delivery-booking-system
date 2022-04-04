@@ -17,21 +17,21 @@ const Register = () => {
                   type="text"
                   name=""
                   className="border w-full rounded px-1 py-1"
-                  id=""
+                  id="registerName"
                 />
                 <span className="text-gray-500 text-sm">Email</span>
                 <input
                   type="email"
                   name=""
                   className="border w-full rounded px-1 py-1"
-                  id=""
+                  id="registerEmail"
                 />
                 <span className="text-gray-500 text-sm">Password</span>
                 <input
                   type="password"
                   name=""
                   className="border w-full rounded px-1 py-1"
-                  id=""
+                  id="registerPassword"
                 />
               </div>
               <div className="my-4 flex justify-between">
@@ -43,7 +43,7 @@ const Register = () => {
                 <Link to={"/login"}>
                   <input
                     type="button"
-                    value="Login?"
+                    value="Have an Account Login?"
                     className="border px-3 py-1 cursor-pointer bg-orange-500 rounded text-white"
                   />
                 </Link>

@@ -17,14 +17,14 @@ const Login = () => {
                   type="email"
                   name=""
                   className="border w-full rounded px-1 py-1"
-                  id=""
+                  id="loginEmail"
                 />
                 <span className="text-gray-500 text-sm">Password</span>
                 <input
                   type="password"
                   name=""
                   className="border w-full rounded px-1 py-1"
-                  id=""
+                  id="loginPassword"
                 />
               </div>
               <div className="my-4 flex justify-between">

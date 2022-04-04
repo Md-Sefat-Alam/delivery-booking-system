@@ -1,9 +1,14 @@
 import React from "react";
+import useAuth from "../../Hooks/useAuth";
 
 const GoogleSignIn = () => {
+  const { googleLogin } = useAuth();
   return (
     <div>
-      <button className="flex justify-center w-full border rounded p-1  my-6">
+      <button
+        onClick={googleLogin}
+        className="flex justify-center w-full border rounded p-1  my-6"
+      >
         <div className="flex justify-center items-center">
           <span>
             <img
