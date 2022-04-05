@@ -10,7 +10,7 @@ const AboutUs = () => {
         />
       </div>
       <div className="w-1/2">
-        <p>
+        <p className="text-gray-700">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit ipsum
           alias veniam accusantium commodi nihil laboriosam hic! Possimus modi
           delectus dicta fugiat earum qui praesentium, quaerat suscipit maiores
@@ -25,15 +25,7 @@ const AboutUs = () => {
           dolorem beatae ratione? Tenetur doloremque, dignissimos ea corrupti
           veritatis quidem quisquam voluptate ut nulla temporibus tempore illo
           inventore officia quasi quae sequi vel doloribus excepturi maiores
-          quam. Ex fuga necessitatibus quis minima eligendi dignissimos
-          possimus, obcaecati, laudantium nemo enim dolores voluptatem eveniet!
-          Ducimus dolores voluptatibus nisi ipsam sunt, culpa tempore tempora
-          perspiciatis quam rerum, obcaecati asperiores, debitis nulla harum
-          quibusdam quas voluptate dolorum nemo modi voluptatum libero nobis
-          mollitia ratione? Culpa nihil a facilis voluptates officiis dolor,
-          molestias ducimus eos ad. Quaerat corrupti temporibus commodi omnis
-          atque quam perspiciatis facere dolorum, iusto et fugiat aut, voluptate
-          aliquid assumenda consequuntur dolor.
+          quam.
         </p>
       </div>
     </div>

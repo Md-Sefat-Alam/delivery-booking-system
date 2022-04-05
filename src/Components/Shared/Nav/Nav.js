@@ -20,6 +20,13 @@ const Nav = () => {
           <NavLink activeClassName="font-bold text-white" to="/booknow">
             <li className="px-3 text-gray-100">Book Now</li>
           </NavLink>
+          {user.accessToken && (
+            <NavLink activeClassName="font-bold text-white" to="/dashboard">
+              <li className="px-3 text-orange-400 border rounded border-orange-400">
+                Dashboard
+              </li>
+            </NavLink>
+          )}
         </ul>
       </nav>
       <div>
