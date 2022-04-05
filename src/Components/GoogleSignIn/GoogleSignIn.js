@@ -1,12 +1,28 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
 const GoogleSignIn = () => {
-  const { googleLogin } = useAuth();
+  const { googleLogin, setError, setUser, setIsLoading } = useAuth();
+  const location = useLocation();
+  const history = useHistory();
+  const redirect_uri = location.state?.from || "/home";
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((result) => {
+        setUser(result.user);
+        history.push(redirect_uri);
+      })
+      .catch((error) => {
+        setError(error.code);
+      })
+      .finally(() => setIsLoading(false));
+  };
   return (
     <div>
       <button
-        onClick={googleLogin}
+        onClick={handleGoogleLogin}
         className="flex justify-center w-full border rounded p-1  my-6"
       >
         <div className="flex justify-center items-center">

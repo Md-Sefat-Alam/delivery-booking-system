@@ -5,7 +5,10 @@ import useAuth from "../../../Hooks/useAuth";
 const Nav = () => {
   const { logOut, user } = useAuth();
   return (
-    <div className="flex wrapper justify-between items-center">
+    <div
+      style={{ minHeight: "60px" }}
+      className="flex wrapper justify-between items-center"
+    >
       <div className="text-gray-500 text-xl font-bold select-none cursor-pointer">
         B<span className="text-orange-500 text-3xl">ook No</span>w
       </div>
@@ -29,7 +32,7 @@ const Nav = () => {
           )}
         </ul>
       </nav>
-      <div>
+      <div className="">
         {user.accessToken ? (
           <div className="flex flex-row-reverse">
             <div

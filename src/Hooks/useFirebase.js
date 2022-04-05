@@ -14,64 +14,64 @@ firebaseInit();
 const useFirebase = () => {
   const [user, setUser] = useState({});
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const auth = getAuth();
   const googleAuthProvider = new GoogleAuthProvider();
   const googleLogin = () => {
-    signInWithPopup(auth, googleAuthProvider)
-      .then((result) => {
-        console.log(result.user);
-        setUser(result.user);
-      })
-      .catch((error) => {
-        setError(error.code);
-        console.log(error.code);
-      });
+    setIsLoading(true);
+    return signInWithPopup(auth, googleAuthProvider);
   };
   const emailPasswordRegister = (email, password) => {
+    setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setUser(userCredential.user);
       })
       .catch((error) => {
         setError(error.code);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
   const emailPasswordLogin = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setUser(userCredential.user);
-      })
-      .catch((error) => {
-        setError(error.code);
-      });
+    setIsLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
   };
   const logOut = () => {
+    setIsLoading(true);
     signOut(auth)
       .then(() => {})
       .catch((error) => {
         setError(error.code);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
   useEffect(() => {
-    onAuthStateChanged(auth, (userData) => {
+    const unsubscribe = onAuthStateChanged(auth, (userData) => {
       if (userData) {
         setUser(userData);
       } else {
         setUser({});
       }
+      setIsLoading(false);
     });
+    return () => unsubscribe;
   }, []);
   console.log(error);
   console.log(user);
 
   return {
+    setUser,
+    setError,
+    isLoading,
+    setIsLoading,
     user,
     error,
     googleLogin,
     logOut,
     emailPasswordRegister,
     emailPasswordLogin,
+    signInWithPopup,
   };
 };
 export default useFirebase;

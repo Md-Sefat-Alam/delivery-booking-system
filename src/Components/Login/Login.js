@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import GoogleSignIn from "../GoogleSignIn/GoogleSignIn";
 import SectionHeader from "../Shared/SectionHeader/SectionHeader";
 
 const Login = () => {
-  const { emailPasswordLogin } = useAuth();
+  const { emailPasswordLogin, setUser, setError, setIsLoading } = useAuth();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
+  const history = useHistory();
+  const location = useLocation();
+  const redirect_uri = location.state?.from || "/home";
+
   const handleLoginData = (e, type) => {
     switch (type) {
       case "password":
@@ -26,6 +32,17 @@ const Login = () => {
         break;
     }
   };
+  const emailPasswordLoginHandle = () => {
+    emailPasswordLogin(loginData.email, loginData.password)
+      .then((userCredential) => {
+        setUser(userCredential.user);
+        history.push(redirect_uri);
+      })
+      .catch((error) => {
+        setError(error.code);
+      })
+      .finally(() => setIsLoading(false));
+  };
   return (
     <div className="sectionRoot wrapper">
       <div className="mt-10 flex flex-col justify-center items-center">
@@ -35,7 +52,7 @@ const Login = () => {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                emailPasswordLogin(loginData.email, loginData.password);
+                emailPasswordLoginHandle();
               }}
             >
               <div className="my-8">
