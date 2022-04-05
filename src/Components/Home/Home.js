@@ -21,7 +21,7 @@ const Home = () => {
       <div>
         <SimpleImageSlider
           width={"100%"}
-          height={600}
+          height={700}
           images={images}
           showNavs={true}
         />
@@ -32,21 +32,21 @@ const Home = () => {
       <div className="wrapper">
         <div className="grid grid-cols-3 gap-4">
           <ServiceCard
-            image={"./Images/ServiceLogo/icons8-document-delivery-100.png"}
+            image={"fa-print"}
             title={"Document Service"}
             description={
               "Under this service we are providing document delivery for both corporate and retail customers nationwide. Envelopes weighing between 01 to 200 grams are being serviced. These documents are being distributed vide 600+ outlets across Bangladesh."
             }
           ></ServiceCard>
           <ServiceCard
-            image={"./Images/ServiceLogo/icons8-mobile-phone-99.png"}
+            image={"fa-mobile-alt"}
             title={"Mobile & ICT Equipment Service"}
             description={
               "These are regular parcel services limited to the mobile and ICT importers/distributors/manufacturers and vendors. who seek the parcel delivery services from us."
             }
           ></ServiceCard>
           <ServiceCard
-            image={"./Images/ServiceLogo/icons8-deliver-food-100.png"}
+            image={"fa-angle-double-up"}
             title={"Super Express Service"}
             description={
               'These are Extra urgent delivery documents in the company\'s list of enveloped services categories, under the "Super Express Service". The Booking rate for each document is BDT 120 / - only.'
