@@ -11,14 +11,14 @@ const Nav = () => {
       </div>
       <nav>
         <ul className="flex">
-          <NavLink activeClassName="font-bold border-b" to="/home">
-            <li className="px-3">Home</li>
+          <NavLink activeClassName="font-bold text-white" to="/home">
+            <li className="px-3 text-gray-100">Home</li>
           </NavLink>
-          <NavLink activeClassName="font-bold border-b" to="/myorders">
-            <li className="px-3">My Orders</li>
+          <NavLink activeClassName="font-bold text-white" to="/myorders">
+            <li className="px-3 text-gray-100">My Orders</li>
           </NavLink>
-          <NavLink activeClassName="font-bold border-b" to="/booknow">
-            <li className="px-3">Book Now</li>
+          <NavLink activeClassName="font-bold text-white" to="/booknow">
+            <li className="px-3 text-gray-100">Book Now</li>
           </NavLink>
         </ul>
       </nav>
@@ -40,13 +40,17 @@ const Nav = () => {
             </div>
             <button
               onClick={logOut}
-              className="border rounded m-2 px-2 text-gray-500 hover:text-black"
+              className="border rounded m-2 px-2 text-gray-500 hover:text-white"
             >
               Log Out
             </button>
           </div>
         ) : (
-          <NavLink activeClassName="font-bold border-b" to="/login">
+          <NavLink
+            activeClassName="font-bold text-white"
+            className="text-white border rounded p-1"
+            to="/login"
+          >
             Login
           </NavLink>
         )}

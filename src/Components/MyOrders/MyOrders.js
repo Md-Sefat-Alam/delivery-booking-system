@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const MyOrders = () => {
-    return (
-        <div className='wrapper'>
-            My Orders
-        </div>
-    );
+  return <div className="sectionRoot wrapper">My Orders</div>;
 };
 
 export default MyOrders;

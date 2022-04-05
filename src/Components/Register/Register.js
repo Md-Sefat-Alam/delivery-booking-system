@@ -34,7 +34,7 @@ const Register = () => {
     }
   };
   return (
-    <div className="wrapper">
+    <div className="sectionRoot wrapper">
       <div className="mt-10 flex flex-col justify-center items-center">
         <div className="w-1/3">
           <SectionHeader text={"Register"}></SectionHeader>

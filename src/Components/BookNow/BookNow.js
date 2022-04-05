@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const BookNow = () => {
-    return (
-        <div className='wrapper'>
-            Book now
-        </div>
-    );
+  return <div className="sectionRoot wrapper">Book now</div>;
 };
 
 export default BookNow;

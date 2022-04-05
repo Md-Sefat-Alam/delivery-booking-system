@@ -7,6 +7,7 @@ import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import MyOrders from "./Components/MyOrders/MyOrders";
 import Register from "./Components/Register/Register";
+import Footer from "./Components/Shared/Footer/Footer";
 import Nav from "./Components/Shared/Nav/Nav";
 import AuthProvider from "./context/AuthProvider";
 
@@ -15,7 +16,7 @@ function App() {
     <div className="App">
       <AuthProvider>
         <BrowserRouter>
-          <div className="fullWrapper bg-slate-300">
+          <div className="fullWrapper bg-gray-900">
             <Nav></Nav>
           </div>
 
@@ -39,6 +40,9 @@ function App() {
               <Home></Home>
             </Route>
           </Switch>
+          <div className="footerContainer bg-gray-900 mt-11">
+            <Footer></Footer>
+          </div>
         </BrowserRouter>
       </AuthProvider>
     </div>
