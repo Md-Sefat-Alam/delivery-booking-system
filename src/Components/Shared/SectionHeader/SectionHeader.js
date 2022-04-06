@@ -1,6 +1,6 @@
 import React from "react";
 
-const SectionHeader = ({ text }) => {
+const SectionHeader = ({ text, children }) => {
   return (
     <div className="bg-gray-200 mt-5">
       <div className="wrapper">

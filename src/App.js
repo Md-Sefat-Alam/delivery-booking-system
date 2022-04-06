@@ -6,7 +6,7 @@ import BookNow from "./Components/BookNow/BookNow";
 import UserDashboardMain from "./Components/Dashboard/UserDashboard/UserDashboardMain/UserDashboardMain";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
-import MyOrders from "./Components/MyOrders/MyOrders";
+import AddNewPost from "./Components/AddNewPost/AddNewPost";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Register from "./Components/Register/Register";
 import Footer from "./Components/Shared/Footer/Footer";
@@ -30,8 +30,8 @@ function App() {
             <Route path="/booknow">
               <BookNow></BookNow>
             </Route>
-            <PrivateRoute path="/myorders">
-              <MyOrders></MyOrders>
+            <PrivateRoute path="/add-new-post">
+              <AddNewPost></AddNewPost>
             </PrivateRoute>
             <Route path="/login">
               <Login></Login>
@@ -46,16 +46,6 @@ function App() {
               <Home></Home>
             </Route>
           </Switch>
-          {/* {window.location.pathname === "/dashboard" ? null : (
-            <div className="footerContainer bg-gray-900 mt-11">
-              <Footer></Footer>
-            </div>
-          )} */}
-          {/* {isDashBoard && (
-            <div className="footerContainer bg-gray-900 mt-11">
-              <Footer></Footer>
-            </div>
-          )} */}
           <div className="footerContainer bg-gray-900">
             <Footer></Footer>
           </div>

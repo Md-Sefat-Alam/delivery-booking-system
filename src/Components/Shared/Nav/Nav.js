@@ -1,6 +1,11 @@
 import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import PostAddIcon from "@mui/icons-material/PostAdd";
+import HomeIcon from "@mui/icons-material/Home";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from "@mui/icons-material/Login";
 
 const Nav = () => {
   const { logOut, user, setIsDashBoard } = useAuth();
@@ -22,19 +27,37 @@ const Nav = () => {
       </div>
       <nav>
         <ul className="flex">
-          <NavLink activeClassName="font-bold text-white" to="/home">
-            <li className="px-3 text-gray-100">Home</li>
+          <NavLink
+            activeStyle={{ fontWeight: "bold", color: "rgb(251 146 60)" }}
+            style={{ color: "rgb(243 244 246)" }}
+            to="/home"
+          >
+            <li className="px-3 flex items-center">
+              <HomeIcon /> <span> Home</span>
+            </li>
           </NavLink>
-          <NavLink activeClassName="font-bold text-white" to="/myorders">
-            <li className="px-3 text-gray-100">My Orders</li>
+          <NavLink
+            activeStyle={{ fontWeight: "bold", color: "rgb(251 146 60)" }}
+            style={{ color: "rgb(243 244 246)" }}
+            to="/add-new-post"
+          >
+            <li className="px-3 flex items-center">
+              <PostAddIcon />
+              <span>Post</span>
+            </li>
           </NavLink>
-          <NavLink activeClassName="font-bold text-white" to="/booknow">
+          {/* <NavLink activeClassName="font-bold text-white" to="/booknow">
             <li className="px-3 text-gray-100">Book Now</li>
-          </NavLink>
+          </NavLink> */}
           {user.accessToken && (
-            <NavLink activeClassName="font-bold text-white" to="/dashboard">
-              <li className="px-3 text-orange-400 border rounded border-orange-400">
-                Dashboard
+            <NavLink
+              activeStyle={{ fontWeight: "bold", color: "rgb(251 146 60)" }}
+              style={{ color: "rgb(243 244 246)" }}
+              to="/dashboard"
+            >
+              <li className="px-3 flex items-center">
+                <DashboardIcon />
+                <span>Dashboard</span>
               </li>
             </NavLink>
           )}
@@ -58,18 +81,21 @@ const Nav = () => {
             </div>
             <button
               onClick={logOut}
-              className="border rounded m-2 px-2 text-gray-500 hover:text-white"
+              className="m-2 px-2 text-gray-500 hover:text-red-500 hover:font-bold flex items-center"
             >
-              Log Out
+              <LogoutIcon />
+              <span> Log Out</span>
             </button>
           </div>
         ) : (
           <NavLink
-            activeClassName="font-bold text-white"
-            className="text-white border rounded p-1"
+            activeStyle={{ fontWeight: "bold", color: "rgb(251 146 60)" }}
+            style={{ color: "rgb(243 244 246)" }}
+            className="p-1"
             to="/login"
           >
-            Login
+            <LoginIcon />
+            <span> Login</span>
           </NavLink>
         )}
       </div>

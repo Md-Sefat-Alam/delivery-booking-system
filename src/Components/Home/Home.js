@@ -1,9 +1,9 @@
 import React from "react";
 import SimpleImageSlider from "react-simple-image-slider";
 import AboutUs from "../AboutUs/AboutUs";
+import RecipeShowCard from "../Shared/RecipeShowCard/RecipeShowCard";
 import SectionHeader from "../Shared/SectionHeader/SectionHeader";
 import ServiceCard from "../Shared/ServiceCard/ServiceCard";
-import SimpleSnackbar from "../Shared/Snackbar/Snakbar";
 import "./Home.css";
 
 const Home = () => {
@@ -19,7 +19,7 @@ const Home = () => {
     },
   ];
   return (
-    <div className="sectionRoot">
+    <div className="sectionRoot bg-gray-100">
       <div>
         <SimpleImageSlider
           width={"100%"}
@@ -31,8 +31,23 @@ const Home = () => {
       {/* banner picture */}
 
       <SectionHeader text={"Foods"} />
+      <div className="wrapper py-5 grid grid-cols-3 gap-5">
+        <RecipeShowCard />
+        <RecipeShowCard />
+        <RecipeShowCard />
+      </div>
       <SectionHeader text={"Furniture"} />
+      <div className="wrapper py-5 grid grid-cols-3 gap-5">
+        <RecipeShowCard />
+        <RecipeShowCard />
+        <RecipeShowCard />
+      </div>
       <SectionHeader text={"Mobile & ICT Equipment Service"} />
+      <div className="wrapper py-5 grid grid-cols-3 gap-5">
+        <RecipeShowCard />
+        <RecipeShowCard />
+        <RecipeShowCard />
+      </div>
 
       <SectionHeader text={"Our services"} />
       <div className="wrapper py-10">
