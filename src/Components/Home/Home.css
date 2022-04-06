@@ -1,0 +1,12 @@
+.MuiCard-root:hover .cardImage {
+  transition: 0.4s;
+  background-color: rgb(249 115 22);
+  /* color: rgb(238, 234, 234); */
+}
+.MuiCard-root {
+  cursor: pointer;
+}
+.MuiCard-root:hover {
+  transition: 0.4s;
+  transform: scale(1.04);
+}

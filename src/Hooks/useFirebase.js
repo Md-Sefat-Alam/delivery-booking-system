@@ -15,6 +15,9 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isDashBoard, setIsDashBoard] = useState(true);
+  // const loc = useLocation();
+  // console.log(loc);
 
   const auth = getAuth();
   const googleAuthProvider = new GoogleAuthProvider();
@@ -57,6 +60,7 @@ const useFirebase = () => {
     });
     return () => unsubscribe;
   }, []);
+
   console.log(error);
   console.log(user);
 
@@ -72,6 +76,8 @@ const useFirebase = () => {
     emailPasswordRegister,
     emailPasswordLogin,
     signInWithPopup,
+    setIsDashBoard,
+    isDashBoard,
   };
 };
 export default useFirebase;

@@ -1,9 +1,17 @@
-import React from "react";
+import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 
 const Nav = () => {
-  const { logOut, user } = useAuth();
+  const { logOut, user, setIsDashBoard } = useAuth();
+  console.log(user.photoURL);
+  const loc = useLocation();
+  console.log(loc.pathname);
+  if (loc.pathname === "/dashboard") {
+    setIsDashBoard(false);
+  } else {
+    setIsDashBoard(true);
+  }
   return (
     <div
       style={{ minHeight: "60px" }}

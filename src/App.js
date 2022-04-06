@@ -11,6 +11,7 @@ import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Register from "./Components/Register/Register";
 import Footer from "./Components/Shared/Footer/Footer";
 import Nav from "./Components/Shared/Nav/Nav";
+import SimpleSnackbar from "./Components/Shared/Snackbar/Snakbar";
 import AuthProvider from "./context/AuthProvider";
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
           <div className="fullWrapper bg-gray-900">
             <Nav></Nav>
           </div>
-
+          <SimpleSnackbar></SimpleSnackbar>
           <Switch>
             <Route path="/home">
               <Home></Home>
@@ -50,7 +51,12 @@ function App() {
               <Footer></Footer>
             </div>
           )} */}
-          <div className="footerContainer bg-gray-900 mt-11">
+          {/* {isDashBoard && (
+            <div className="footerContainer bg-gray-900 mt-11">
+              <Footer></Footer>
+            </div>
+          )} */}
+          <div className="footerContainer bg-gray-900">
             <Footer></Footer>
           </div>
         </BrowserRouter>

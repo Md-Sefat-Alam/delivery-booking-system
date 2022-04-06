@@ -3,6 +3,8 @@ import SimpleImageSlider from "react-simple-image-slider";
 import AboutUs from "../AboutUs/AboutUs";
 import SectionHeader from "../Shared/SectionHeader/SectionHeader";
 import ServiceCard from "../Shared/ServiceCard/ServiceCard";
+import SimpleSnackbar from "../Shared/Snackbar/Snakbar";
+import "./Home.css";
 
 const Home = () => {
   const images = [
@@ -28,8 +30,12 @@ const Home = () => {
       </div>
       {/* banner picture */}
 
+      <SectionHeader text={"Foods"} />
+      <SectionHeader text={"Furniture"} />
+      <SectionHeader text={"Mobile & ICT Equipment Service"} />
+
       <SectionHeader text={"Our services"} />
-      <div className="wrapper">
+      <div className="wrapper py-10">
         <div className="grid grid-cols-3 gap-4">
           <ServiceCard
             image={"fa-print"}
@@ -50,6 +56,20 @@ const Home = () => {
             title={"Super Express Service"}
             description={
               'These are Extra urgent delivery documents in the company\'s list of enveloped services categories, under the "Super Express Service". The Booking rate for each document is BDT 120 / - only.'
+            }
+          ></ServiceCard>
+          <ServiceCard
+            image={"fa-utensils"}
+            title={"Food Delivery"}
+            description={
+              'These are Extra urgent delivery documents in the company\'s list of enveloped services categories, under the "Super Express Service". The Booking rate for each document is BDT 120 / - only.'
+            }
+          ></ServiceCard>
+          <ServiceCard
+            image={"fa-couch"}
+            title={"Furniture"}
+            description={
+              "Under this service we are providing document delivery for both corporate and retail customers nationwide. Envelopes weighing between 01 to 200 grams are being serviced. These documents are being distributed vide 600+ outlets across Bangladesh."
             }
           ></ServiceCard>
         </div>

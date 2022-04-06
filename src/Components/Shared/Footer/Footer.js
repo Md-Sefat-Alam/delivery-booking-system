@@ -1,8 +1,13 @@
 import React from "react";
+import useAuth from "../../../Hooks/useAuth";
 
 const Footer = () => {
+  const { isDashBoard } = useAuth();
+  if (!isDashBoard) {
+    return "";
+  }
   return (
-    <footer className="wrapper">
+    <footer className="wrapper mt-11">
       <div
         style={{ minHeight: "250px" }}
         className=" flex flex-col justify-center mt-8"
