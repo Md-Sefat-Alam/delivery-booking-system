@@ -10,28 +10,49 @@ import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UpgradeIcon from "@mui/icons-material/Upgrade";
+import axios from "axios";
+import CheckIcon from "@mui/icons-material/Check";
+
+function useForceUpdate() {
+  const [value, setValue] = useState(0);
+  return () => setValue(value + 1);
+}
 
 const MyOrders = () => {
   const [buyData, setBuyData] = useState([]);
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
-  const rows = [
-    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-    createData("Eclair", 262, 16.0, 24, 6.0),
-    createData("Cupcake", 305, 3.7, 67, 4.3),
-    createData("Gingerbread", 356, 16.0, 49, 3.9),
-  ];
+  const forceUpdate = useForceUpdate();
 
   useEffect(() => {
     fetch("http://localhost:5000/allbuydata")
       .then((res) => res.json())
       .then((data) => setBuyData(data))
       .catch((error) => console.log(error));
-  }, []);
+  }, [forceUpdate]);
 
-  console.log(buyData);
+  const handleUpdate = (_id) => {
+    if (window.confirm("Confirmation Click Ok")) {
+      axios
+        .put(`http://localhost:5000/makeapproved/${_id}`)
+        .then((res) => {
+          if (res.status === 200) {
+            forceUpdate();
+          }
+        })
+        .catch((error) => console.error(error));
+    }
+  };
+  const handleDelete = (_id) => {
+    if (window.confirm("Confirmation Click Ok to Delete")) {
+      axios
+        .delete(`http://localhost:5000/cancle-buy-request/${_id}`)
+        .then((res) => {
+          if (res.status === 200) {
+            forceUpdate();
+          }
+        })
+        .catch((error) => console.log(error));
+    }
+  };
   return (
     <div>
       <div className="h-10 bg-gray-800 px-10 flex items-center text-orange-400 text-xl font-bold">
@@ -55,7 +76,7 @@ const MyOrders = () => {
                     Quantity
                   </TableCell>
                   <TableCell className="uppercase" align="right">
-                    Status(g)
+                    Status
                   </TableCell>
                   <TableCell className="uppercase" align="right">
                     User Email
@@ -85,15 +106,30 @@ const MyOrders = () => {
                       </TableCell>
                       <TableCell align="right">{userEmail}</TableCell>
                       <TableCell align="right">
-                        <IconButton aria-label="update" size="small">
-                          <UpgradeIcon
-                            className="text-yellow-600 font-bold text-2xl"
-                            fontSize="20px"
-                          />
-                        </IconButton>
+                        {
+                          // CheckIcon
+                          status === "approved" ? (
+                            <CheckIcon className="text-white font-bold text-2xl" />
+                          ) : (
+                            <IconButton
+                              onClick={() => handleUpdate(_id)}
+                              aria-label="update"
+                              size="small"
+                            >
+                              <UpgradeIcon
+                                className="text-yellow-600 font-bold text-2xl"
+                                fontSize="20px"
+                              />
+                            </IconButton>
+                          )
+                        }
                       </TableCell>
                       <TableCell align="right">
-                        <IconButton aria-label="delete" size="small">
+                        <IconButton
+                          onClick={() => handleDelete(_id)}
+                          aria-label="delete"
+                          size="small"
+                        >
                           <DeleteIcon
                             className="text-red-400 font-bold text-2xl"
                             fontSize="20px"
