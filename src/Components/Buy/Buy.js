@@ -12,20 +12,47 @@ import Avatar from "@mui/material/Avatar";
 import { red } from "@mui/material/colors";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Button } from "@mui/material";
+import useAuth from "../../Hooks/useAuth";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Buy = () => {
   const { productId } = useParams();
   const [postData, setPostData] = useState({});
   const [quantityValue, setQuantityValue] = useState(1);
+  const { user } = useAuth();
   const quantity = useRef();
+  const history = useHistory();
   const { date, img, pCost, pDescription, pType, pName, _id } = postData;
   useEffect(() => {
     fetch(`http://localhost:5000/post/${productId}`)
       .then((res) => res.json())
       .then((data) => setPostData(data));
   }, []);
+
   const handleQuantity = () => {
     setQuantityValue(quantity.current.value);
+  };
+
+  const handlePurchase = () => {
+    const buyDetail = {
+      productId: _id,
+      quantity: quantityValue,
+      userId: user.accessToken,
+      userEmail: user.email,
+      status: "pending",
+    };
+    if (window.confirm("Confirmation Click Ok")) {
+      axios
+        .post("http://localhost:5000/buy", buyDetail)
+        .then((res) => {
+          if (res.status === 200) {
+            alert("Congratulation");
+            history.push("/home");
+          }
+        })
+        .catch((e) => {});
+    }
   };
   return (
     <div className="sectionRoot wrapper">
@@ -82,7 +109,9 @@ const Buy = () => {
                   <p className="text-gray-500 font-bold mb-3">
                     Total: <span>{pCost * quantityValue}tk</span>
                   </p>
-                  <Button variant="outlined">Purchase</Button>
+                  <Button onClick={handlePurchase} variant="outlined">
+                    Purchase
+                  </Button>
                 </div>
               </Box>
             </Box>

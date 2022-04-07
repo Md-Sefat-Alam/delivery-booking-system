@@ -10,7 +10,12 @@ import LoginIcon from "@mui/icons-material/Login";
 const Nav = () => {
   const { logOut, user, setIsDashBoard } = useAuth();
   const loc = useLocation();
-  if (loc.pathname === "/dashboard") {
+  if (
+    loc.pathname === "/dashboard" ||
+    loc.pathname === "/dashboard/myorders" ||
+    loc.pathname === "/dashboard/addreview" ||
+    loc.pathname === "/dashboard/setting"
+  ) {
     setIsDashBoard(false);
   } else {
     setIsDashBoard(true);

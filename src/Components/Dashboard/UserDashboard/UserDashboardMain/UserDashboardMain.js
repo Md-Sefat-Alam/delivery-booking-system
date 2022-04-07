@@ -48,7 +48,7 @@ const UserDashboardMain = () => {
             <Link to={`${url}/myorders`}>
               <ListItem button divider>
                 <i class="fas fa-location-arrow px-2"></i>
-                <ListItemText primary=" My Orders" />
+                <ListItemText primary="Manage All Ordes" />
               </ListItem>
             </Link>
             <Link to={`${url}/addreview`}>
