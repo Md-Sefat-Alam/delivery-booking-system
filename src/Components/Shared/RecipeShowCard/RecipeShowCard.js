@@ -13,14 +13,16 @@ import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Link } from "react-router-dom";
 
-export default function RecipeShowCard() {
+export default function RecipeShowCard({ singlePost }) {
+  const { date, img, pCost, pDescription, pType, pName, _id } = singlePost;
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+            {pName[0]}
           </Avatar>
         }
         action={
@@ -28,28 +30,29 @@ export default function RecipeShowCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={pName}
+        className="uppercase"
+        subheader={date}
       />
       <CardMedia
         component="img"
         height="194"
-        image="https://cdn.pixabay.com/photo/2014/07/21/23/04/paella-398968_960_720.jpg"
-        alt="Paella dish"
+        image={img}
+        alt={pName + " photo"}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {pDescription}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <Button variant="outlined">
-            <ShoppingCartIcon />
-            <span>Buy Now</span>
-          </Button>
+          <Link to={`/buy/${_id}`}>
+            <Button variant="outlined">
+              <ShoppingCartIcon />
+              <span>Buy</span>
+            </Button>
+          </Link>
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
@@ -57,6 +60,7 @@ export default function RecipeShowCard() {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
+        <span className="font-bold text-gray-400 text-xl">Cost: {pCost}</span>
       </CardActions>
     </Card>
   );

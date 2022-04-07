@@ -13,6 +13,7 @@ import Footer from "./Components/Shared/Footer/Footer";
 import Nav from "./Components/Shared/Nav/Nav";
 import SimpleSnackbar from "./Components/Shared/Snackbar/Snakbar";
 import AuthProvider from "./context/AuthProvider";
+import Buy from "./Components/Buy/Buy";
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
             </Route>
             <PrivateRoute path="/dashboard">
               <UserDashboardMain></UserDashboardMain>
+            </PrivateRoute>
+            <PrivateRoute path="/buy/:productId">
+              <Buy></Buy>
             </PrivateRoute>
             <Route path="/">
               <Home></Home>

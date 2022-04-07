@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SimpleImageSlider from "react-simple-image-slider";
 import AboutUs from "../AboutUs/AboutUs";
 import RecipeShowCard from "../Shared/RecipeShowCard/RecipeShowCard";
@@ -7,6 +7,13 @@ import ServiceCard from "../Shared/ServiceCard/ServiceCard";
 import "./Home.css";
 
 const Home = () => {
+  const [postData, setPostData] = useState([]);
+  const url = `http://localhost:5000/allpost`;
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setPostData(data));
+  }, []);
   const images = [
     {
       url: "https://www.gloriafood.com/wp-content/uploads/2021/03/How_to_Improve_Your_Food_Delivery_Service_in_2022_-_fb.png",
@@ -32,11 +39,17 @@ const Home = () => {
 
       <SectionHeader text={"Foods"} />
       <div className="wrapper py-5 grid grid-cols-3 gap-5">
+        {postData.length > 0 &&
+          postData.map((singlePost) => {
+            return (
+              <RecipeShowCard key={singlePost._key} singlePost={singlePost} />
+            );
+          })}
+        {/* <RecipeShowCard />
         <RecipeShowCard />
-        <RecipeShowCard />
-        <RecipeShowCard />
+        <RecipeShowCard /> */}
       </div>
-      <SectionHeader text={"Furniture"} />
+      {/* <SectionHeader text={"Furniture"} />
       <div className="wrapper py-5 grid grid-cols-3 gap-5">
         <RecipeShowCard />
         <RecipeShowCard />
@@ -47,7 +60,7 @@ const Home = () => {
         <RecipeShowCard />
         <RecipeShowCard />
         <RecipeShowCard />
-      </div>
+      </div> */}
 
       <SectionHeader text={"Our services"} />
       <div className="wrapper py-10">

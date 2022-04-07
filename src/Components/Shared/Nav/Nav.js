@@ -9,9 +9,7 @@ import LoginIcon from "@mui/icons-material/Login";
 
 const Nav = () => {
   const { logOut, user, setIsDashBoard } = useAuth();
-  console.log(user.photoURL);
   const loc = useLocation();
-  console.log(loc.pathname);
   if (loc.pathname === "/dashboard") {
     setIsDashBoard(false);
   } else {
