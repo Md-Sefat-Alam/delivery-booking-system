@@ -11,6 +11,7 @@ import AllStatus from "../AllStatus/AllStatus";
 import MyOrders from "../MyOrders/MyOrders";
 import AddReview from "../AddReview/AddReview";
 import UserSetting from "../UserSetting/UserSetting";
+import ManageAllOrders from "../../ManageAllOrders/ManageAllOrders";
 
 const style = {
   width: "300px",
@@ -48,7 +49,13 @@ const UserDashboardMain = () => {
             <Link to={`${url}/myorders`}>
               <ListItem button divider>
                 <i class="fas fa-location-arrow px-2"></i>
-                <ListItemText primary="Manage All Ordes" />
+                <ListItemText primary="My Booked" />
+              </ListItem>
+            </Link>
+            <Link to={`${url}/manage-all-orders`}>
+              <ListItem button divider>
+                <i class="fas fa-location-arrow px-2"></i>
+                <ListItemText primary="Manage All Booking" />
               </ListItem>
             </Link>
             <Link to={`${url}/addreview`}>
@@ -76,6 +83,9 @@ const UserDashboardMain = () => {
             </Route>
             <Route path={`${path}/myorders`}>
               <MyOrders></MyOrders>
+            </Route>
+            <Route path={`${path}/manage-all-orders`}>
+              <ManageAllOrders></ManageAllOrders>
             </Route>
             <Route path={`${path}/addreview`}>
               <AddReview></AddReview>

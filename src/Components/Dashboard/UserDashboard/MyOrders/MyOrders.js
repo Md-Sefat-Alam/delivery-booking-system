@@ -20,30 +20,17 @@ function useForceUpdate() {
 }
 
 const MyOrders = () => {
-  const { setError, setMessage } = useAuth();
+  const { setError, setMessage, user } = useAuth();
   const [buyData, setBuyData] = useState([]);
   const forceUpdate = useForceUpdate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/allbuydata")
+    fetch(`http://localhost:5000/my-post/${user.email}`)
       .then((res) => res.json())
       .then((data) => setBuyData(data))
       .catch((error) => setError("Failed to Database Connection Try again"));
   }, [forceUpdate]);
 
-  const handleUpdate = (_id) => {
-    if (window.confirm("Confirmation Click Ok")) {
-      axios
-        .put(`http://localhost:5000/makeapproved/${_id}`)
-        .then((res) => {
-          if (res.status === 200) {
-            forceUpdate();
-            setMessage("Successfully updated");
-          }
-        })
-        .catch((error) => console.error(error));
-    }
-  };
   const handleDelete = (_id) => {
     if (window.confirm("Confirmation Click Ok to Delete")) {
       axios
@@ -86,63 +73,47 @@ const MyOrders = () => {
                     User Email
                   </TableCell>
                   <TableCell className="uppercase" align="right">
-                    Make approved
-                  </TableCell>
-                  <TableCell className="uppercase" align="right">
                     Cancle
                   </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {buyData.map((row) => {
-                  const { productId, quantity, status, userEmail, _id } = row;
-                  return (
-                    <TableRow
-                      key={_id}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {productId}
-                      </TableCell>
-                      <TableCell align="right">{quantity}</TableCell>
-                      <TableCell className="uppercase" align="right">
-                        {status}
-                      </TableCell>
-                      <TableCell align="right">{userEmail}</TableCell>
-                      <TableCell align="right">
-                        {
-                          // CheckIcon
-                          status === "approved" ? (
-                            <CheckIcon className="text-white font-bold text-2xl" />
-                          ) : (
-                            <IconButton
-                              onClick={() => handleUpdate(_id)}
-                              aria-label="update"
-                              size="small"
-                            >
-                              <UpgradeIcon
-                                className="text-yellow-600 font-bold text-2xl"
-                                fontSize="20px"
-                              />
-                            </IconButton>
-                          )
-                        }
-                      </TableCell>
-                      <TableCell align="right">
-                        <IconButton
-                          onClick={() => handleDelete(_id)}
-                          aria-label="delete"
-                          size="small"
-                        >
-                          <DeleteIcon
-                            className="text-red-400 font-bold text-2xl"
-                            fontSize="20px"
-                          />
-                        </IconButton>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
+                {buyData.length > 0 ? (
+                  buyData.map((row) => {
+                    const { productId, quantity, status, userEmail, _id } = row;
+                    return (
+                      <TableRow
+                        key={_id}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell component="th" scope="row">
+                          {productId}
+                        </TableCell>
+                        <TableCell align="right">{quantity}</TableCell>
+                        <TableCell className="uppercase" align="right">
+                          {status}
+                        </TableCell>
+                        <TableCell align="right">{userEmail}</TableCell>
+                        <TableCell align="right">
+                          <IconButton
+                            onClick={() => handleDelete(_id)}
+                            aria-label="delete"
+                            size="small"
+                          >
+                            <DeleteIcon
+                              className="text-red-400 font-bold text-2xl"
+                              fontSize="20px"
+                            />
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })
+                ) : (
+                  <p className="text-center">You have no orders</p>
+                )}
               </TableBody>
             </Table>
           </TableContainer>
