@@ -3,10 +3,11 @@ import SectionHeader from "../Shared/SectionHeader/SectionHeader";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import InputFieldPost from "../Shared/InputFieldPost/InputFieldPost";
 import AddIcon from "@mui/icons-material/Add";
+import useAuth from "../../Hooks/useAuth";
 const axios = require("axios");
 
 const AddNewPost = () => {
-  // const [postData, setPostData] = useState({});
+  const { setMessage, setError } = useAuth();
   const productTypeRef = useRef();
   const productImageRef = useRef();
   const productNameRef = useRef();
@@ -43,13 +44,13 @@ const AddNewPost = () => {
       pDescription,
       date: dateTime,
     };
-    const addOrNot = window.confirm("Add New");
-    if (addOrNot) {
+
+    if (pName && img && pCost && pDescription) {
       axios
         .post("http://localhost:5000/addnewpost", postData)
         .then((response) => {
           if (response.status === 200) {
-            alert("Added an post");
+            setMessage("Successfully Added an post");
             productNameRef.current.value = "";
             productImageRef.current.value = "";
             productCostRef.current.value = "";
@@ -58,6 +59,8 @@ const AddNewPost = () => {
         .catch((error) => {
           // console.log(error);
         });
+    } else {
+      setError("Enter All field text proper");
     }
   };
   return (

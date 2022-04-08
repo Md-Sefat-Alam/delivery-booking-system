@@ -7,7 +7,8 @@ import GoogleSignIn from "../GoogleSignIn/GoogleSignIn";
 import SectionHeader from "../Shared/SectionHeader/SectionHeader";
 
 const Login = () => {
-  const { emailPasswordLogin, setUser, setError, setIsLoading } = useAuth();
+  const { emailPasswordLogin, setUser, setError, setIsLoading, setMessage } =
+    useAuth();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -37,6 +38,12 @@ const Login = () => {
       .then((userCredential) => {
         setUser(userCredential.user);
         history.push(redirect_uri);
+        const text = `Welcome ${
+          userCredential.user.displayName
+            ? userCredential.user.displayName
+            : userCredential.user.email
+        } Login Successfull`;
+        setMessage(text);
       })
       .catch((error) => {
         setError(error.code);

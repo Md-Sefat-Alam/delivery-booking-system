@@ -14,6 +14,7 @@ import Nav from "./Components/Shared/Nav/Nav";
 import SimpleSnackbar from "./Components/Shared/Snackbar/Snakbar";
 import AuthProvider from "./context/AuthProvider";
 import Buy from "./Components/Buy/Buy";
+import SucessSnakbar from "./Components/Shared/SuccessSnakbar/SuccessSnakbar";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Nav></Nav>
           </div>
           <SimpleSnackbar></SimpleSnackbar>
+          <SucessSnakbar></SucessSnakbar>
           <Switch>
             <Route path="/home">
               <Home></Home>

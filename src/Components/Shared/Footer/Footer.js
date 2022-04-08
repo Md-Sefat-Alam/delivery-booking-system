@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 
 const Footer = () => {
@@ -19,25 +20,26 @@ const Footer = () => {
             </div>
           </div>
           <div>
-            <div className="text-gray-300">Top Links _ _ _ _ _</div>
+            <div className="text-gray-300">
+              Site Links _ _ _ _ _ _ _ _ _ _ _
+            </div>
             <ul>
               <li className="text-gray-500 hover:text-gray-300 text-sm cursor-pointer border-b-2 px-3 rounded-xl">
-                Lorem ipsum dolor sit amet.
+                <Link to={"/home"}>Home</Link>
               </li>
               <li className="text-gray-500 hover:text-gray-300 text-sm cursor-pointer border-b-2 px-3 rounded-xl">
-                Lorem ipsum dolor sit amet.
+                <Link to={"/add-new-post"}>Add new post</Link>
               </li>
               <li className="text-gray-500 hover:text-gray-300 text-sm cursor-pointer border-b-2 px-3 rounded-xl">
-                Lorem ipsum dolor sit amet.
+                <Link to={"/dashboard"}>Dashboard</Link>
               </li>
               <li className="text-gray-500 hover:text-gray-300 text-sm cursor-pointer border-b-2 px-3 rounded-xl">
-                Lorem ipsum dolor sit amet.
+                <Link to={"/dashboard/myorders"}>My orders</Link>
               </li>
               <li className="text-gray-500 hover:text-gray-300 text-sm cursor-pointer border-b-2 px-3 rounded-xl">
-                Lorem ipsum dolor sit amet.
-              </li>
-              <li className="text-gray-500 hover:text-gray-300 text-sm cursor-pointer border-b-2 px-3 rounded-xl">
-                Lorem ipsum dolor sit amet.
+                <Link to={"/dashboard/manage-all-orders"}>
+                  Manage all orders
+                </Link>
               </li>
             </ul>
           </div>
@@ -45,22 +47,19 @@ const Footer = () => {
             <div className="text-gray-300">Our Services _ _ _ _ _</div>
             <ul>
               <li className="text-gray-500 hover:text-gray-300 text-sm cursor-pointer border-b-2 px-3 rounded-xl">
-                Lorem ipsum dolor sit amet.
+                Food Delivery
               </li>
               <li className="text-gray-500 hover:text-gray-300 text-sm cursor-pointer border-b-2 px-3 rounded-xl">
-                Lorem ipsum dolor sit amet.
+                Furniture
               </li>
               <li className="text-gray-500 hover:text-gray-300 text-sm cursor-pointer border-b-2 px-3 rounded-xl">
-                Lorem ipsum dolor sit amet.
+                Super Express Service
               </li>
               <li className="text-gray-500 hover:text-gray-300 text-sm cursor-pointer border-b-2 px-3 rounded-xl">
-                Lorem ipsum dolor sit amet.
+                Mobile & ICT Equipment Service
               </li>
               <li className="text-gray-500 hover:text-gray-300 text-sm cursor-pointer border-b-2 px-3 rounded-xl">
-                Lorem ipsum dolor sit amet.
-              </li>
-              <li className="text-gray-500 hover:text-gray-300 text-sm cursor-pointer border-b-2 px-3 rounded-xl">
-                Lorem ipsum dolor sit amet.
+                Document Service
               </li>
             </ul>
           </div>

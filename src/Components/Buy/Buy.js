@@ -20,7 +20,7 @@ const Buy = () => {
   const { productId } = useParams();
   const [postData, setPostData] = useState({});
   const [quantityValue, setQuantityValue] = useState(1);
-  const { user } = useAuth();
+  const { user, setMessage, setError } = useAuth();
   const quantity = useRef();
   const history = useHistory();
   const { date, img, pCost, pDescription, pType, pName, _id } = postData;
@@ -47,11 +47,14 @@ const Buy = () => {
         .post("http://localhost:5000/buy", buyDetail)
         .then((res) => {
           if (res.status === 200) {
-            alert("Congratulation");
+            const text = `${
+              user.displayName ? user.displayName : user.email
+            } Now your Buy Request is pending wait for confirmation`;
+            setMessage(text);
             history.push("/home");
           }
         })
-        .catch((e) => {});
+        .catch((e) => setError("Database connection problem..."));
     }
   };
   return (

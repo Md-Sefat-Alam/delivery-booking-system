@@ -12,6 +12,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import UpgradeIcon from "@mui/icons-material/Upgrade";
 import axios from "axios";
 import CheckIcon from "@mui/icons-material/Check";
+import useAuth from "../../../../Hooks/useAuth";
 
 function useForceUpdate() {
   const [value, setValue] = useState(0);
@@ -19,6 +20,7 @@ function useForceUpdate() {
 }
 
 const MyOrders = () => {
+  const { setError, setMessage } = useAuth();
   const [buyData, setBuyData] = useState([]);
   const forceUpdate = useForceUpdate();
 
@@ -26,7 +28,7 @@ const MyOrders = () => {
     fetch("http://localhost:5000/allbuydata")
       .then((res) => res.json())
       .then((data) => setBuyData(data))
-      .catch((error) => console.log(error));
+      .catch((error) => setError("Failed to Database Connection Try again"));
   }, [forceUpdate]);
 
   const handleUpdate = (_id) => {
@@ -36,6 +38,7 @@ const MyOrders = () => {
         .then((res) => {
           if (res.status === 200) {
             forceUpdate();
+            setMessage("Successfully updated");
           }
         })
         .catch((error) => console.error(error));
@@ -48,9 +51,10 @@ const MyOrders = () => {
         .then((res) => {
           if (res.status === 200) {
             forceUpdate();
+            setMessage("Delete Successfull");
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => setError("Database connection problem"));
     }
   };
   return (

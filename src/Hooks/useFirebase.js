@@ -16,8 +16,7 @@ const useFirebase = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isDashBoard, setIsDashBoard] = useState(true);
-  // const loc = useLocation();
-  // console.log(loc);
+  const [message, setMessage] = useState("");
 
   const auth = getAuth();
   const googleAuthProvider = new GoogleAuthProvider();
@@ -30,6 +29,12 @@ const useFirebase = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setUser(userCredential.user);
+        const text = `Welcome ${
+          userCredential.user.displayName
+            ? userCredential.user.displayName
+            : userCredential.user.email
+        } Successfully registered and Logedin`;
+        setMessage(text);
       })
       .catch((error) => {
         setError(error.code);
@@ -78,6 +83,8 @@ const useFirebase = () => {
     signInWithPopup,
     setIsDashBoard,
     isDashBoard,
+    setMessage,
+    message,
   };
 };
 export default useFirebase;
