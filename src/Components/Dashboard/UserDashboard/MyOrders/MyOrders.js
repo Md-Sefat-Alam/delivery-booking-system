@@ -25,7 +25,7 @@ const MyOrders = () => {
   const forceUpdate = useForceUpdate();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/my-post/${user.email}`)
+    fetch(`https://stark-falls-67074.herokuapp.com/my-post/${user.email}`)
       .then((res) => res.json())
       .then((data) => setBuyData(data))
       .catch((error) => setError("Failed to Database Connection Try again"));
@@ -34,7 +34,9 @@ const MyOrders = () => {
   const handleDelete = (_id) => {
     if (window.confirm("Confirmation Click Ok to Delete")) {
       axios
-        .delete(`http://localhost:5000/cancle-buy-request/${_id}`)
+        .delete(
+          `https://stark-falls-67074.herokuapp.com/cancle-buy-request/${_id}`
+        )
         .then((res) => {
           if (res.status === 200) {
             forceUpdate();

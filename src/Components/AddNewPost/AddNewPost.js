@@ -47,7 +47,7 @@ const AddNewPost = () => {
 
     if (pName && img && pCost && pDescription) {
       axios
-        .post("http://localhost:5000/addnewpost", postData)
+        .post("https://stark-falls-67074.herokuapp.com/addnewpost", postData)
         .then((response) => {
           if (response.status === 200) {
             setMessage("Successfully Added an post");

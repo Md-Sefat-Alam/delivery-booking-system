@@ -8,7 +8,7 @@ import "./Home.css";
 
 const Home = () => {
   const [postData, setPostData] = useState([]);
-  const url = `http://localhost:5000/allpost`;
+  const url = `https://stark-falls-67074.herokuapp.com/allpost`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())

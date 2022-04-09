@@ -25,7 +25,7 @@ const Buy = () => {
   const history = useHistory();
   const { date, img, pCost, pDescription, pType, pName, _id } = postData;
   useEffect(() => {
-    fetch(`http://localhost:5000/post/${productId}`)
+    fetch(`https://stark-falls-67074.herokuapp.com/post/${productId}`)
       .then((res) => res.json())
       .then((data) => setPostData(data));
   }, []);
@@ -44,7 +44,7 @@ const Buy = () => {
     };
     if (window.confirm("Confirmation Click Ok")) {
       axios
-        .post("http://localhost:5000/buy", buyDetail)
+        .post("https://stark-falls-67074.herokuapp.com/buy", buyDetail)
         .then((res) => {
           if (res.status === 200) {
             const text = `${
