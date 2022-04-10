@@ -159,21 +159,24 @@ const AddNewPost = () => {
           </div>
         </form>
       </div>
-      {userPost.length > 0 && (
-        <>
-          <SectionHeader text={"My Posts"} />
-          <div className="wrapper py-5 grid grid-cols-3 gap-5">
-            {userPost.map((singlePost) => {
-              return (
-                <RecipeShowCard
-                  key={singlePost._key}
-                  singlePost={singlePost}
-                  woner_showing={true}
-                />
-              );
-            })}
-          </div>
-        </>
+
+      <SectionHeader text={"My Posts"} />
+      {userPost.length > 0 ? (
+        <div className="wrapper py-5 grid grid-cols-3 gap-5">
+          {userPost.map((singlePost) => {
+            return (
+              <RecipeShowCard
+                key={singlePost._key}
+                singlePost={singlePost}
+                woner_showing={true}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <p className="text-center text-yellow-400 font-bold">
+          You have no any post
+        </p>
       )}
     </div>
   );
