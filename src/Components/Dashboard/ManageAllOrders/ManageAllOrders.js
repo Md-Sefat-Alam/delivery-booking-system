@@ -25,7 +25,7 @@ const ManageAllOrders = () => {
   const forceUpdate = useForceUpdate();
 
   useEffect(() => {
-    fetch("https://stark-falls-67074.herokuapp.com/allbuydata")
+    fetch("http://localhost:5000/allbuydata")
       .then((res) => res.json())
       .then((data) => setBuyData(data))
       .catch((error) => setError("Failed to Database Connection Try again"));
@@ -34,7 +34,7 @@ const ManageAllOrders = () => {
   const handleUpdate = (_id) => {
     if (window.confirm("Confirmation Click Ok")) {
       axios
-        .put(`https://stark-falls-67074.herokuapp.com/makeapproved/${_id}`)
+        .put(`http://localhost:5000/makeapproved/${_id}`)
         .then((res) => {
           if (res.status === 200) {
             forceUpdate();
@@ -47,9 +47,7 @@ const ManageAllOrders = () => {
   const handleDelete = (_id) => {
     if (window.confirm("Confirmation Click Ok to Delete")) {
       axios
-        .delete(
-          `https://stark-falls-67074.herokuapp.com/cancle-buy-request/${_id}`
-        )
+        .delete(`http://localhost:5000/cancle-buy-request/${_id}`)
         .then((res) => {
           if (res.status === 200) {
             forceUpdate();
@@ -62,11 +60,11 @@ const ManageAllOrders = () => {
   return (
     <div>
       <div className="h-10 bg-gray-800 px-10 flex items-center text-orange-400 text-xl font-bold">
-        <p>My Orders</p>
+        <p>Manage All Booked as Admin</p>
       </div>
       <div
         style={{ minHeight: "70vh" }}
-        className="w-full flex items-center justify-center"
+        className="w-full flex items-center justify-center py-5"
       >
         <div>
           <TableContainer component={Paper}>

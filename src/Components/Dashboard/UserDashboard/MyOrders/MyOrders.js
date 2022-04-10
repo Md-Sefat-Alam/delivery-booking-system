@@ -9,9 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import UpgradeIcon from "@mui/icons-material/Upgrade";
 import axios from "axios";
-import CheckIcon from "@mui/icons-material/Check";
 import useAuth from "../../../../Hooks/useAuth";
 
 function useForceUpdate() {
@@ -25,7 +23,7 @@ const MyOrders = () => {
   const forceUpdate = useForceUpdate();
 
   useEffect(() => {
-    fetch(`https://stark-falls-67074.herokuapp.com/my-post/${user.email}`)
+    fetch(`http://localhost:5000/my-post/${user.email}`)
       .then((res) => res.json())
       .then((data) => setBuyData(data))
       .catch((error) => setError("Failed to Database Connection Try again"));
@@ -34,9 +32,7 @@ const MyOrders = () => {
   const handleDelete = (_id) => {
     if (window.confirm("Confirmation Click Ok to Delete")) {
       axios
-        .delete(
-          `https://stark-falls-67074.herokuapp.com/cancle-buy-request/${_id}`
-        )
+        .delete(`http://localhost:5000/cancle-buy-request/${_id}`)
         .then((res) => {
           if (res.status === 200) {
             forceUpdate();
@@ -53,7 +49,7 @@ const MyOrders = () => {
       </div>
       <div
         style={{ minHeight: "70vh" }}
-        className="w-full flex items-center justify-center"
+        className="w-full flex items-center justify-center py-5"
       >
         <div>
           <TableContainer component={Paper}>

@@ -7,13 +7,28 @@ import ServiceCard from "../Shared/ServiceCard/ServiceCard";
 import "./Home.css";
 
 const Home = () => {
-  const [postData, setPostData] = useState([]);
-  const url = `https://stark-falls-67074.herokuapp.com/allpost`;
+  const [foodPostData, setFoodPostData] = useState([]);
+  const [furniturePostData, setFurniturePostData] = useState([]);
+  const [mobileIctPostData, setMobileIctPostData] = useState([]);
+  const urlGetFood = `http://localhost:5000/post/food`;
+  const urlGetFurniture = `http://localhost:5000/post/furniture`;
+  const urlGetMobileIct = `http://localhost:5000/post/mobile-ict-equipment`;
   useEffect(() => {
-    fetch(url)
+    fetch(urlGetFood)
       .then((res) => res.json())
-      .then((data) => setPostData(data));
+      .then((data) => setFoodPostData(data));
   }, []);
+  useEffect(() => {
+    fetch(urlGetFurniture)
+      .then((res) => res.json())
+      .then((data) => setFurniturePostData(data));
+  }, []);
+  useEffect(() => {
+    fetch(urlGetMobileIct)
+      .then((res) => res.json())
+      .then((data) => setMobileIctPostData(data));
+  }, []);
+
   const images = [
     {
       url: "https://www.gloriafood.com/wp-content/uploads/2021/03/How_to_Improve_Your_Food_Delivery_Service_in_2022_-_fb.png",
@@ -37,30 +52,42 @@ const Home = () => {
       </div>
       {/* banner picture */}
 
-      <SectionHeader text={"Foods"} />
-      <div className="wrapper py-5 grid grid-cols-3 gap-5">
-        {postData.length > 0 &&
-          postData.map((singlePost) => {
-            return (
-              <RecipeShowCard key={singlePost._key} singlePost={singlePost} />
-            );
-          })}
-        {/* <RecipeShowCard />
-        <RecipeShowCard />
-        <RecipeShowCard /> */}
-      </div>
-      {/* <SectionHeader text={"Furniture"} />
-      <div className="wrapper py-5 grid grid-cols-3 gap-5">
-        <RecipeShowCard />
-        <RecipeShowCard />
-        <RecipeShowCard />
-      </div>
-      <SectionHeader text={"Mobile & ICT Equipment Service"} />
-      <div className="wrapper py-5 grid grid-cols-3 gap-5">
-        <RecipeShowCard />
-        <RecipeShowCard />
-        <RecipeShowCard />
-      </div> */}
+      {foodPostData.length > 0 && (
+        <>
+          <SectionHeader text={"Foods"} />
+          <div className="wrapper py-5 grid grid-cols-3 gap-5">
+            {foodPostData.map((singlePost) => {
+              return (
+                <RecipeShowCard key={singlePost._key} singlePost={singlePost} />
+              );
+            })}
+          </div>
+        </>
+      )}
+      {furniturePostData.length > 0 && (
+        <>
+          <SectionHeader text={"Furniture"} />
+          <div className="wrapper py-5 grid grid-cols-3 gap-5">
+            {furniturePostData.map((singlePost) => {
+              return (
+                <RecipeShowCard key={singlePost._key} singlePost={singlePost} />
+              );
+            })}
+          </div>
+        </>
+      )}
+      {mobileIctPostData.length > 0 && (
+        <>
+          <SectionHeader text={"Mobile & ICT Equipment Service"} />
+          <div className="wrapper py-5 grid grid-cols-3 gap-5">
+            {mobileIctPostData.map((singlePost) => {
+              return (
+                <RecipeShowCard key={singlePost._key} singlePost={singlePost} />
+              );
+            })}
+          </div>
+        </>
+      )}
 
       <SectionHeader text={"Our services"} />
       <div className="wrapper py-10">

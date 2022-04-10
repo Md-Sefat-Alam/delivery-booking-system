@@ -10,11 +10,13 @@ import LoginIcon from "@mui/icons-material/Login";
 const Nav = () => {
   const { logOut, user, setIsDashBoard } = useAuth();
   const loc = useLocation();
+  console.log(loc);
   if (
     loc.pathname === "/dashboard" ||
     loc.pathname === "/dashboard/myorders" ||
     loc.pathname === "/dashboard/addreview" ||
-    loc.pathname === "/dashboard/setting"
+    loc.pathname === "/dashboard/setting" ||
+    loc.pathname === "/dashboard/manage-all-orders"
   ) {
     setIsDashBoard(false);
   } else {
@@ -56,7 +58,7 @@ const Nav = () => {
             <NavLink
               activeStyle={{ fontWeight: "bold", color: "rgb(251 146 60)" }}
               style={{ color: "rgb(243 244 246)" }}
-              to="/dashboard"
+              to="/dashboard/myorders"
             >
               <li className="px-3 flex items-center">
                 <DashboardIcon />
