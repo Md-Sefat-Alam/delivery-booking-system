@@ -20,6 +20,7 @@ const style = {
 };
 
 const UserDashboardMain = () => {
+  document.title = `Dashboard All Status || Book Now`;
   const { path, url } = useRouteMatch();
 
   return (

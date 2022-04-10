@@ -7,6 +7,7 @@ import ServiceCard from "../Shared/ServiceCard/ServiceCard";
 import "./Home.css";
 
 const Home = () => {
+  document.title = "Home || Book Now";
   const [foodPostData, setFoodPostData] = useState([]);
   const [furniturePostData, setFurniturePostData] = useState([]);
   const [mobileIctPostData, setMobileIctPostData] = useState([]);

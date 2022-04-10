@@ -18,6 +18,7 @@ function useForceUpdate() {
 }
 
 const MyOrders = () => {
+  document.title = `Dashboard My Booked || Book Now`;
   const { setError, setMessage, user } = useAuth();
   const [buyData, setBuyData] = useState([]);
   const forceUpdate = useForceUpdate();

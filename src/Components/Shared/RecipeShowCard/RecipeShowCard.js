@@ -14,9 +14,12 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
+import useAuth from "../../../Hooks/useAuth";
 
-export default function RecipeShowCard({ singlePost }) {
+export default function RecipeShowCard({ singlePost, woner_showing }) {
   const { date, img, pCost, pDescription, pType, pName, _id } = singlePost;
+  const { setError } = useAuth();
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -36,7 +39,8 @@ export default function RecipeShowCard({ singlePost }) {
       />
       <CardMedia
         component="img"
-        height="194"
+        // height="194"
+        style={{ height: "250px" }}
         image={img}
         alt={pName + " photo"}
       />
@@ -47,12 +51,24 @@ export default function RecipeShowCard({ singlePost }) {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <Link to={`/buy/${_id}`}>
-            <Button variant="outlined">
-              <ShoppingCartIcon />
-              <span>Buy</span>
+          {woner_showing ? (
+            // <Link to={`/buy/${_id}`}>
+            <Button
+              onClick={() => setError("Edit option will be coming soon")}
+              variant="outlined"
+            >
+              <EditIcon />
+              <span>Edit</span>
             </Button>
-          </Link>
+          ) : (
+            // </Link>
+            <Link to={`/buy/${_id}`}>
+              <Button variant="outlined">
+                <ShoppingCartIcon />
+                <span>Buy</span>
+              </Button>
+            </Link>
+          )}
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />

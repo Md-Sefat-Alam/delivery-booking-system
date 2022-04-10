@@ -7,6 +7,7 @@ import GoogleSignIn from "../GoogleSignIn/GoogleSignIn";
 import SectionHeader from "../Shared/SectionHeader/SectionHeader";
 
 const Login = () => {
+  document.title = `Login || Book Now`;
   const { emailPasswordLogin, setUser, setError, setIsLoading, setMessage } =
     useAuth();
   const [loginData, setLoginData] = useState({

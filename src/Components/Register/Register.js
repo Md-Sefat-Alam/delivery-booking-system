@@ -5,6 +5,7 @@ import GoogleSignIn from "../GoogleSignIn/GoogleSignIn";
 import SectionHeader from "../Shared/SectionHeader/SectionHeader";
 
 const Register = () => {
+  document.title = `Register new user || Book Now`;
   const { emailPasswordRegister } = useAuth();
   const [registerData, setRegisterData] = useState({
     name: "",

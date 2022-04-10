@@ -17,6 +17,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const Buy = () => {
+  document.title = `Buy now || Book Now`;
   const { productId } = useParams();
   const [postData, setPostData] = useState({});
   const [quantityValue, setQuantityValue] = useState(1);
